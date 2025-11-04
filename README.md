@@ -41,7 +41,7 @@ A personalized exam simulation app for Python introduction courses. This app all
 - **Submission:**
   - Manual submit button
   - Auto-submit when timer expires (exam mode only)
-  - Exports answers as JSON file with grading results
+  - Instant results display with score breakdown
 
 ## Getting Started
 
@@ -92,8 +92,7 @@ The built files will be in the `dist` directory.
 3. **Submitting:**
    - Click "Submit Exam" when done
    - In exam mode, the exam auto-submits when the timer reaches 0
-   - View your MCQ score and see which questions you got right/wrong
-   - A JSON file with your complete answers (including grading) will be automatically downloaded
+   - View your MCQ score and see which questions you got right/wrong instantly
 
 ## Customization
 

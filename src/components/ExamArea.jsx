@@ -79,35 +79,6 @@ function ExamArea({ mode, onExit, isDarkMode, toggleDarkMode }) {
       gradedMCQs
     })
 
-    const submission = {
-      mode,
-      submittedAt: new Date().toISOString(),
-      autoSubmit,
-      timeSpent: mode === 'exam' ? (60 * 60 - timeLeft) : null,
-      mcqScore: `${score}/${total}`,
-      answers: questions.map((q) => ({
-        questionId: q.id,
-        type: q.type,
-        answer: answers[q.id] || null,
-        bookmarked: bookmarked.has(questions.indexOf(q)),
-        ...(q.type === 'mcq' && {
-          isCorrect: answers[q.id] === q.correctAnswer,
-          correctAnswer: q.correctAnswer
-        })
-      }))
-    }
-
-    // Download JSON
-    const blob = new Blob([JSON.stringify(submission, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `claire-exam-submission-${Date.now()}.json`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-
     setIsSubmitted(true)
   }
 
@@ -140,7 +111,6 @@ function ExamArea({ mode, onExit, isDarkMode, toggleDarkMode }) {
           </div>
 
           <p className="note">Open-ended questions are not auto-graded.</p>
-          <p className="note">Your complete answers have been saved as a JSON file.</p>
           <button className="exit-button" onClick={onExit}>
             Return to Main Page
           </button>
