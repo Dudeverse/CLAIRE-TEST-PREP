@@ -26,6 +26,13 @@ A personalized exam simulation app for Python introduction courses. This app all
   - Python code snippets in questions are beautifully highlighted
   - Full-featured code editor for writing solutions
 
+- **Mobile Responsive:**
+  - Fully optimized for tablets and mobile devices
+  - Sidebar stacks on top for easier navigation
+  - Touch-friendly button sizes
+  - Readable text on small screens
+  - Landscape orientation support
+
 - **Navigation:**
   - Sidebar with numbered buttons for quick navigation
   - Visual indicators for answered questions
@@ -134,8 +141,6 @@ const [timeLeft, setTimeLeft] = useState(60 * 60) // Change 60 to desired minute
 ## Credits
 
 Favicon: [Exam icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/exam)
-
-See [CREDITS.md](CREDITS.md) for full attribution details.
 
 ## License
 
