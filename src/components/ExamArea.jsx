@@ -3,12 +3,13 @@ import { questions } from '../questionsData'
 import MCQQuestion from './MCQQuestion'
 import OpenEndedQuestion from './OpenEndedQuestion'
 
-function ExamArea({ mode, onExit }) {
+function ExamArea({ mode, onExit, isDarkMode, toggleDarkMode }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState({})
   const [bookmarked, setBookmarked] = useState(new Set())
   const [timeLeft, setTimeLeft] = useState(60 * 60) // 60 minutes in seconds
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [gradeResults, setGradeResults] = useState(null)
 
   // Timer effect - only for exam mode
   useEffect(() => {
@@ -55,16 +56,44 @@ function ExamArea({ mode, onExit }) {
   }
 
   const handleSubmit = (autoSubmit = false) => {
+    // Grade MCQs
+    const mcqQuestions = questions.filter(q => q.type === 'mcq')
+    const gradedMCQs = mcqQuestions.map(q => {
+      const userAnswer = answers[q.id]
+      const isCorrect = userAnswer === q.correctAnswer
+      return {
+        questionId: q.id,
+        isCorrect,
+        userAnswer,
+        correctAnswer: q.correctAnswer
+      }
+    })
+
+    const score = gradedMCQs.filter(r => r.isCorrect).length
+    const total = mcqQuestions.length
+
+    setGradeResults({
+      score,
+      total,
+      percentage: (score / total) * 100,
+      gradedMCQs
+    })
+
     const submission = {
       mode,
       submittedAt: new Date().toISOString(),
       autoSubmit,
       timeSpent: mode === 'exam' ? (60 * 60 - timeLeft) : null,
+      mcqScore: `${score}/${total}`,
       answers: questions.map((q) => ({
         questionId: q.id,
         type: q.type,
         answer: answers[q.id] || null,
-        bookmarked: bookmarked.has(questions.indexOf(q))
+        bookmarked: bookmarked.has(questions.indexOf(q)),
+        ...(q.type === 'mcq' && {
+          isCorrect: answers[q.id] === q.correctAnswer,
+          correctAnswer: q.correctAnswer
+        })
       }))
     }
 
@@ -73,7 +102,7 @@ function ExamArea({ mode, onExit }) {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `exam-submission-${Date.now()}.json`
+    a.download = `claire-exam-submission-${Date.now()}.json`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -85,12 +114,33 @@ function ExamArea({ mode, onExit }) {
   const currentQ = questions[currentQuestion]
   const isAnswered = answers[currentQ.id] !== undefined
 
-  if (isSubmitted) {
+  if (isSubmitted && gradeResults) {
     return (
       <div className="submitted-page">
         <div className="submitted-content">
           <h1>Exam Submitted!</h1>
-          <p>Your answers have been saved and downloaded as a JSON file.</p>
+          <div className="score-display">
+            <h2>MCQ Score</h2>
+            <div className="score-circle">
+              <div className="score-number">{gradeResults.score}/{gradeResults.total}</div>
+              <div className="score-percentage">{gradeResults.percentage.toFixed(1)}%</div>
+            </div>
+          </div>
+          
+          <div className="results-breakdown">
+            <h3>MCQ Results</h3>
+            <div className="results-grid">
+              {gradeResults.gradedMCQs.map((result) => (
+                <div key={result.questionId} className={`result-item ${result.isCorrect ? 'correct' : 'incorrect'}`}>
+                  <span className="result-question">Q{result.questionId}</span>
+                  <span className="result-icon">{result.isCorrect ? '✓' : '✗'}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="note">Open-ended questions are not auto-graded.</p>
+          <p className="note">Your complete answers have been saved as a JSON file.</p>
           <button className="exit-button" onClick={onExit}>
             Return to Main Page
           </button>
@@ -103,15 +153,22 @@ function ExamArea({ mode, onExit }) {
     <div className="exam-area">
       {/* Header */}
       <div className="exam-header">
-        <h2>{mode === 'exam' ? 'Exam Mode' : 'Practice Mode'}</h2>
+        <div className="header-left">
+          <h2>{mode === 'exam' ? 'Exam Mode' : 'Practice Mode'}</h2>
+        </div>
         {mode === 'exam' && (
           <div className="timer">
             Time Left: {formatTime(timeLeft)}
           </div>
         )}
-        <button className="submit-button" onClick={() => handleSubmit(false)}>
-          Submit Exam
-        </button>
+        <div className="header-right">
+          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
+          <button className="submit-button" onClick={() => handleSubmit(false)}>
+            Submit Exam
+          </button>
+        </div>
       </div>
 
       <div className="exam-body">
@@ -139,12 +196,14 @@ function ExamArea({ mode, onExit }) {
               question={currentQ}
               selectedAnswer={answers[currentQ.id]}
               onSelectAnswer={(answer) => handleAnswerChange(currentQ.id, answer)}
+              isDarkMode={isDarkMode}
             />
           ) : (
             <OpenEndedQuestion
               question={currentQ}
               answer={answers[currentQ.id]}
               onAnswerChange={(answer) => handleAnswerChange(currentQ.id, answer)}
+              isDarkMode={isDarkMode}
             />
           )}
 

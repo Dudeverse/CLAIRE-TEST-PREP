@@ -27,7 +27,7 @@ export const questions = [
   {
     id: 3,
     type: 'mcq',
-    question: 'What is the output of: print(type([1, 2, 3]))?',
+    question: 'What is the output of the following code?\n```python\nprint(type([1, 2, 3]))\n```',
     options: [
       '<class \'array\'>',
       '<class \'list\'>',
@@ -75,14 +75,14 @@ export const questions = [
   {
     id: 7,
     type: 'mcq',
-    question: 'What is the correct way to start a for loop in Python?',
+    question: 'What will the following code print?\n```python\nfor i in range(3):\n    print(i)\n```',
     options: [
-      'for i in range(5):',
-      'for (i = 0; i < 5; i++)',
-      'foreach i in range(5)',
-      'loop i to 5:'
+      '1 2 3',
+      '0 1 2',
+      '0 1 2 3',
+      '1 2'
     ],
-    correctAnswer: 0
+    correctAnswer: 1
   },
   {
     id: 8,

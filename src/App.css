@@ -354,3 +354,264 @@ body {
   background-color: #2980b9;
 }
 
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: 2px solid #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 15px;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.main-page .dark-mode-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Welcome Message */
+.welcome-message {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+/* Header Layout */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Score Display */
+.score-display {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.score-display h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.score-circle {
+  display: inline-block;
+  padding: 30px 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.score-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.score-percentage {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Results Breakdown */
+.results-breakdown {
+  margin: 30px 0;
+}
+
+.results-breakdown h3 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.result-item.correct {
+  background-color: #d5f4e6;
+  border: 2px solid #27ae60;
+  color: #27ae60;
+}
+
+.result-item.incorrect {
+  background-color: #fadbd8;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+}
+
+.result-question {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.result-icon {
+  font-size: 1.5rem;
+}
+
+.note {
+  text-align: center;
+  color: #666;
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+/* Question Text Styling */
+.question-text {
+  margin-bottom: 20px;
+}
+
+.question-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .app {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .main-page h1 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .welcome-message {
+  color: #aaa;
+}
+
+body.dark-mode .exam-header {
+  background-color: #2d2d2d;
+  border-bottom-color: #444;
+}
+
+body.dark-mode .exam-header h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .sidebar {
+  background-color: #2d2d2d;
+  border-right-color: #444;
+}
+
+body.dark-mode .sidebar h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .question-number {
+  border-color: #555;
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+body.dark-mode .question-number:hover {
+  background-color: #3d3d3d;
+}
+
+body.dark-mode .question-number.active {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+body.dark-mode .question-number.answered {
+  background-color: #27ae60;
+  border-color: #27ae60;
+}
+
+body.dark-mode .question-area {
+  background-color: #2d2d2d;
+}
+
+body.dark-mode .question-content h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .question-text p {
+  color: #ccc;
+}
+
+body.dark-mode .option {
+  border-color: #555;
+  background-color: #2d2d2d;
+}
+
+body.dark-mode .option:hover {
+  background-color: #3d3d3d;
+  border-color: #3498db;
+}
+
+body.dark-mode .option.selected {
+  background-color: #1e3a5f;
+  border-color: #3498db;
+}
+
+body.dark-mode .option label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .code-editor-container {
+  border-color: #555;
+}
+
+body.dark-mode .question-navigation {
+  border-top-color: #444;
+}
+
+body.dark-mode .dark-mode-toggle {
+  border-color: #555;
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .submitted-content {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+body.dark-mode .score-display h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .results-breakdown h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .note {
+  color: #aaa;
+}
+

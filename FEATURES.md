@@ -1,9 +1,11 @@
-# Python Test Prep App - Features Overview
+# Claire's Python Test Prep App - Features Overview
 
 ## 🎯 Main Features Implemented
 
 ### 1. **Landing Page**
 - Two large buttons: "Exam Mode" and "Practice Mode"
+- Personalized welcome message for Claire
+- Dark mode toggle button (top right)
 - Clean, minimal interface
 
 ### 2. **Exam Mode**
@@ -66,30 +68,55 @@
 - Visual indicators in sidebar
 - Toggle on/off by clicking bookmark button
 
-### 9. **Submission System**
+### 9. **Submission System with Instant Grading**
 - "Submit Exam" button always visible in header
-- Confirmation on manual submit
 - Auto-submit when timer expires (exam mode only)
-- Generates comprehensive JSON file with:
+- **Instant MCQ Grading:**
+  - Shows total score (e.g., 8/10)
+  - Displays percentage with gradient background
+  - Visual grid showing which questions were correct (✓) or incorrect (✗)
+  - Color-coded results (green for correct, red for incorrect)
+- **JSON Export** with comprehensive data:
   ```json
   {
     "mode": "exam or practice",
     "submittedAt": "ISO timestamp",
     "autoSubmit": true/false,
     "timeSpent": "seconds (exam mode only)",
+    "mcqScore": "8/10",
     "answers": [
       {
         "questionId": 1,
         "type": "mcq",
         "answer": 0,
-        "bookmarked": false
+        "bookmarked": false,
+        "isCorrect": true,
+        "correctAnswer": 0
       },
       ...
     ]
   }
   ```
 - Automatic download of JSON file
-- Submission confirmation page
+- Beautiful results page with score display
+
+### 10. **Dark Mode**
+- Toggle button on main page and exam header
+- Moon (🌙) for light mode, Sun (☀️) for dark mode
+- Dark theme applied to:
+  - All backgrounds and text
+  - Sidebar and question areas
+  - Code editor (CodeMirror dark theme)
+  - Code snippets in questions
+- Preference saved in browser localStorage
+- Smooth transitions between themes
+
+### 11. **Code Syntax Highlighting in Questions**
+- Python code snippets in question text are highlighted
+- Uses react-syntax-highlighter with Prism
+- Automatically detects \`\`\`python code blocks
+- Matches color scheme to current theme (light/dark)
+- Beautiful, readable formatting
 
 ## 📋 Sample Questions Included
 
@@ -162,6 +189,7 @@ npm run build
 
 ## ✅ All Requirements Met
 
+**Original Requirements:**
 - ✓ Simple, minimal UI
 - ✓ Two modes (Exam/Practice)
 - ✓ Timer for exam mode only
@@ -174,4 +202,12 @@ npm run build
 - ✓ Auto-submit on timer expiry
 - ✓ JSON export of answers
 - ✓ Simplest possible stack
+
+**New Features Added:**
+- ✓ Dark mode toggle with persistent preference
+- ✓ Personalized for Claire
+- ✓ Instant MCQ grading with visual results
+- ✓ Code syntax highlighting in question text
+- ✓ Enhanced results page with score breakdown
+- ✓ Dark theme for code editor
 

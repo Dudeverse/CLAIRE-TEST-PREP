@@ -1,8 +1,10 @@
-function MCQQuestion({ question, selectedAnswer, onSelectAnswer }) {
+import QuestionText from './QuestionText'
+
+function MCQQuestion({ question, selectedAnswer, onSelectAnswer, isDarkMode }) {
   return (
     <div className="question-content">
       <h2>Question {question.id}</h2>
-      <p className="question-text">{question.question}</p>
+      <QuestionText text={question.question} isDarkMode={isDarkMode} />
       <div className="options">
         {question.options.map((option, index) => (
           <div 

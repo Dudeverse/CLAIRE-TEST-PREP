@@ -1,6 +1,6 @@
-# Python Test Prep App
+# Claire's Python Test Prep App
 
-A simple exam simulation app for Python introduction courses. This app allows students to practice with MCQ questions and open-ended coding questions in both exam mode (with timer) and practice mode (no timer).
+A personalized exam simulation app for Python introduction courses. This app allows Claire to practice with MCQ questions and open-ended coding questions in both exam mode (with timer) and practice mode (no timer).
 
 ## Features
 
@@ -9,8 +9,22 @@ A simple exam simulation app for Python introduction courses. This app allows st
   - **Practice Mode**: No timer, practice at your own pace
 
 - **Question Types:**
-  - 10 Multiple Choice Questions (MCQs)
+  - 10 Multiple Choice Questions (MCQs) - **Auto-graded!**
   - 4 Open-ended coding questions with Python syntax highlighting
+
+- **Dark Mode:**
+  - Toggle between light and dark themes
+  - Preference saved in browser
+  - Dark theme for code editor
+
+- **Instant Grading:**
+  - MCQs are graded immediately after submission
+  - See your score and which questions you got right/wrong
+  - Open-ended questions remain ungraded (as expected)
+
+- **Code Syntax Highlighting:**
+  - Python code snippets in questions are beautifully highlighted
+  - Full-featured code editor for writing solutions
 
 - **Navigation:**
   - Sidebar with numbered buttons for quick navigation
@@ -20,7 +34,7 @@ A simple exam simulation app for Python introduction courses. This app allows st
 - **Submission:**
   - Manual submit button
   - Auto-submit when timer expires (exam mode only)
-  - Exports answers as JSON file
+  - Exports answers as JSON file with grading results
 
 ## Getting Started
 
@@ -55,7 +69,9 @@ The built files will be in the `dist` directory.
 
 ## How to Use
 
-1. **Start Screen**: Choose between "Exam Mode" or "Practice Mode"
+1. **Start Screen**: 
+   - Choose between "Exam Mode" or "Practice Mode"
+   - Toggle dark mode with the 🌙/☀️ button in the top right
 
 2. **Taking the Exam/Practice:**
    - Use the sidebar to navigate between questions
@@ -64,11 +80,13 @@ The built files will be in the `dist` directory.
    - For open-ended questions: Write your Python code in the editor
    - Click the bookmark button (☆) to mark questions for review
    - Use Previous/Next buttons to navigate sequentially
+   - Toggle dark mode anytime during the exam
 
 3. **Submitting:**
    - Click "Submit Exam" when done
    - In exam mode, the exam auto-submits when the timer reaches 0
-   - A JSON file with your answers will be automatically downloaded
+   - View your MCQ score and see which questions you got right/wrong
+   - A JSON file with your complete answers (including grading) will be automatically downloaded
 
 ## Customization
 
@@ -109,7 +127,9 @@ const [timeLeft, setTimeLeft] = useState(60 * 60) // Change 60 to desired minute
 - **React 18** - UI framework
 - **Vite** - Build tool and dev server
 - **CodeMirror** - Code editor with Python syntax highlighting
+- **React Syntax Highlighter** - Syntax highlighting for code in questions
 - **Pure CSS** - Styling (no CSS frameworks for simplicity)
+- **LocalStorage** - Persist dark mode preference
 
 ## License
 
