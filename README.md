@@ -131,6 +131,12 @@ const [timeLeft, setTimeLeft] = useState(60 * 60) // Change 60 to desired minute
 - **Pure CSS** - Styling (no CSS frameworks for simplicity)
 - **LocalStorage** - Persist dark mode preference
 
+## Credits
+
+Favicon: [Exam icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/exam)
+
+See [CREDITS.md](CREDITS.md) for full attribution details.
+
 ## License
 
 MIT
